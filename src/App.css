@@ -1,0 +1,67 @@
+.App{
+  display: flex;
+  flex-direction: column;
+}
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 5%;
+  box-shadow: 0px 1px 5px lightgray;
+}
+.search__filter{
+  display: flex;
+  padding: 30px 5%;
+  justify-content: space-between;
+  align-items: center;
+}
+.search{
+  display: flex;
+  padding: 10px;
+  flex: 0.4;
+  box-shadow: 0px 0px 3px lightgray;
+  border-radius: 5px;
+}
+.search>img{
+  width: 15px;
+  padding: 0px 10px;
+}
+.search>input{
+  width: 100%;
+  border: none;
+  font-family: inherit;
+  outline: none;
+}
+.filters{
+  padding: 10px;
+  border: none;
+  font-family: inherit;
+  position: relative;
+  outline: none;
+  flex:0.15;
+  border-radius: 2px;
+  box-shadow: 0px 0px 5px lightgrey;
+}
+.filters__holder{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.filters__holder>h3{
+  font-size: 12px;
+  color: hsl(200, 15%, 8%);
+  font-weight: 300;
+}
+.holder__options{
+  position: absolute;
+  width: 100%;
+  margin-top: 15px;
+  margin-left: -10px;
+  box-shadow: 0px 0px 5px lightgrey;
+}
+.holder__options>option{
+  padding:5px 10px;
+  font-size: 12px;
+  color: hsl(200, 15%, 8%);
+  cursor: pointer;
+}
