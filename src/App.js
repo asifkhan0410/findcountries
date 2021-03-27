@@ -9,6 +9,36 @@ function App() {
   const [countryname, setCountryName] = useState('');
   const [filters, setFilters] = useState('');
   const [togglefilter, setToggleFilter] = useState(true);
+  const [countries,setCountries] = useState([]);
+
+  useEffect(()=>{
+    fetch(`https://restcountries.eu/rest/v2/all`).then(res => res.json()).then(data => {
+      setCountries(data);
+    console.log(countries)
+    })
+  },[])
+  
+  useEffect(()=>{
+    if(filters){
+      fetch(`https://restcountries.eu/rest/v2/region/${filters}`).then(res => res.json()).then(data => {
+      setCountries(data);
+    })
+    }
+  },[filters])
+
+  useEffect(()=>{
+    if(countryname){
+      fetch(`https://restcountries.eu/rest/v2/name/${countryname}`).then(res => res.json()).then(data => {
+      setCountries(data);
+    })
+  }
+  else{
+    fetch(`https://restcountries.eu/rest/v2/all`).then(res => res.json()).then(data => {
+      setCountries(data);
+    console.log(countries)
+    })
+  }
+  },[countryname])
 
   return (
     <div className="App">
@@ -38,7 +68,17 @@ function App() {
         </div>
       </div>
       <div className="countries">
-        
+            {countries? countries.map(country =>{
+            return <div className="country">
+                      <div className="country__flag" style={{backgroundImage:`url(${country.flag})`}}></div>
+                      <div className="country__details">
+                        <h1>{country.name}</h1>
+                        <p>Population: <span>{country.population}</span></p>
+                        <p>Region: <span>{country.region}</span></p>
+                        <p>Capital: <span>{country.capital}</span></p>
+                      </div>
+                    </div>
+            }):""}
       </div>
     </div>
   );
