@@ -1,5 +1,21 @@
+.light{
+  --primary-element-background-color: white;
+  --primary-app-background-color: white;
+  --primary-element-color: hsl(200, 15%, 8%);
+  --box-shadow: lightgray;
+  --span-text : hsl(200, 15%, 8%);
+}
+.dark{
+  --primary-element-background-color: hsl(209, 23%, 22%);
+  --primary-element-color: white;
+  --primary-app-background-color: hsl(207, 26%, 17%);
+  --box-shadow: hsl(0deg 0% 0% / 41%);
+  --span-text: hsl(0, 0%, 52%);
+}
+
 .App{
   display: flex;
+  background-color: var(--primary-app-background-color);
   flex-direction: column;
 }
 header{
@@ -7,7 +23,13 @@ header{
   align-items: center;
   justify-content: space-between;
   padding: 15px 5%;
-  box-shadow: 0px 1px 5px lightgray;
+  background-color: var(--primary-element-background-color);
+  color: var(--primary-element-color);
+  box-shadow: 0px 1px 5px var(--box-shadow);
+}
+header>h3{
+  display: flex;
+  align-items: center;
 }
 .search__filter{
   display: flex;
@@ -18,8 +40,10 @@ header{
 .search{
   display: flex;
   padding: 10px;
+  background-color: var(--primary-element-background-color);
+  color: var(--primary-element-color);
   flex: 0.3;
-  box-shadow: 0px 0px 3px lightgray;
+  box-shadow: 0px 0px 3px var(--box-shadow);
   border-radius: 5px;
 }
 .search>img{
@@ -28,9 +52,14 @@ header{
 }
 .search>input{
   width: 100%;
+  background-color: var(--primary-element-background-color);
+  color: var(--primary-element-color);
   border: none;
   font-family: inherit;
   outline: none;
+}
+.search>input::-webkit-input-placeholder{
+  color: var(--primary-element-color);
 }
 .filters{
   padding: 10px;
@@ -39,31 +68,36 @@ header{
   position: relative;
   outline: none;
   flex:0.1;
-  border-radius: 2px;
-  box-shadow: 0px 0px 5px lightgrey;
+  background-color: var(--primary-element-background-color);
+  color: var(--primary-element-color);
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px var(--box-shadow);
 }
 .filters__holder{
   display: flex;
+  width:max-content;
   justify-content: space-between;
   align-items: center;
 }
 .filters__holder>h3{
   font-size: 12px;
-  color: hsl(200, 15%, 8%);
+  color: var(--primary-element-color);
   font-weight: 300;
 }
 .holder__options{
   position: absolute;
   width: 100%;
   margin-top: 15px;
-  background-color: white;
+  background-color: var(--primary-element-background-color);
+  color: var(--primary-element-color);
   margin-left: -10px;
-  box-shadow: 0px 0px 5px lightgrey;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px var(--box-shadow);
 }
 .holder__options>option{
   padding:5px 10px;
   font-size: 12px;
-  color: hsl(200, 15%, 8%);
+  color: var(--primary-element-color);
   cursor: pointer;
 }
 
@@ -75,12 +109,18 @@ header{
   justify-content: space-between;
   padding: 30px 5%;
 }
+.countries>a{
+  width: 21%;
+  text-decoration: none;
+}
 .country{
   display: flex;
+  cursor: pointer;
   flex-direction: column;
-  width: 21%;
+  width: 100%;
+  background-color: var(--primary-element-background-color);
   margin: 15px 0px;
-  box-shadow: 0px 0px 10px lightgrey;
+  box-shadow: 0px 0px 10px var(--box-shadow);
 }
 .country__flag{
   height: 180px;
@@ -91,17 +131,78 @@ header{
   display: flex;
   flex-direction: column;
   padding: 20px;
+  background-color: var(--primary-element-background-color);
 }
 .country__details>h1{
   margin-bottom: 15px;
   font-size: 20px;
-  color: hsl(200, 15%, 8%);
+  color: var(--primary-element-color);
 }
 .country__details>p{
   font-size: 15px;
-  color: hsl(200, 15%, 8%);
+  font-weight: lighter;
+  color: var(--primary-element-color);
 }
 .country__details>p>span{
-  color: hsl(0, 0%, 52%);
+  color: var(--primary-element-color);
+}
 
+/* Svg loader */
+.spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100vw;
+}
+.spinner>svg{
+  width:100px;
+  height: 15px;
+  fill: var(--primary-element-color);
+}
+
+@media only screen and (max-width:415px){
+  header{
+    padding: 30px 5%;
+  }
+  header>h1{
+    font-size: 20px;
+  }
+  header>h3{
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  header>h3>img{
+    width:25px;
+  }
+  .search__filter{
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    padding-bottom: 0px;
+  }
+  .search{
+    margin-bottom: 15px;
+    width: -webkit-fill-available;
+  }
+  .filters{
+    width: 50%;
+  }
+  .countries{
+    flex-direction: column;
+    align-items: center;
+  }
+  .countries>a{
+    width: 80%;
+  }
+  .country{
+    width: 100%;
+  }
+  .country__details>h1{
+    font-size: 18px;
+  }
+  .country__details>p{
+    font-size: 12px;
+    padding: 4px 0px;
+  }
 }

@@ -1,10 +1,21 @@
 import React, {useEffect, useState } from 'react'
 import './App.css';
 import searchicon from './images/search.svg'
+import searchicon2 from './images/search2.svg'
 import openicon from './images/open.svg'
 import closeicon from './images/close.svg'
+import moon from './images/moon.svg';
+import moon2 from './images/moon2.svg';
+import {ThreeDots} from 'svg-loaders-react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
+import CountryDetail from './CountryDetail';
 
-function App() {  
+function App() { 
   const [darkmode, setDarkMode] = useState(false);
   const [countryname, setCountryName] = useState('');
   const [filters, setFilters] = useState('');
@@ -14,7 +25,7 @@ function App() {
   useEffect(()=>{
     fetch(`https://restcountries.eu/rest/v2/all`).then(res => res.json()).then(data => {
       setCountries(data);
-    console.log(countries)
+      console.log(countries)
     })
   },[])
   
@@ -22,6 +33,8 @@ function App() {
     if(filters){
       fetch(`https://restcountries.eu/rest/v2/region/${filters}`).then(res => res.json()).then(data => {
       setCountries(data);
+      console.log(countries)
+
     })
     }
   },[filters])
@@ -35,20 +48,35 @@ function App() {
   else{
     fetch(`https://restcountries.eu/rest/v2/all`).then(res => res.json()).then(data => {
       setCountries(data);
-    console.log(countries)
+      console.log(countries)
+
     })
   }
   },[countryname])
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
   return (
-    <div className="App">
+    <Router>
+    <div className={`App ${!darkmode? 'light' : 'dark'}`}>
       <header>
         <h1>Where in the world?</h1>
-        <h3 onClick={()=> setDarkMode(!darkmode)}>{darkmode? 'Dark Mode' : 'Light Mode'}</h3>
+        <h3 onClick={()=> setDarkMode(!darkmode)}><img src={!darkmode? moon: moon2} alt="Light/Dark Mode"/>{!darkmode? 'Dark Mode' : 'Light Mode'}</h3>
       </header>
+      <Switch>
+        {countries.length>0? countries.map(
+          (country,index) =>{
+            return <Route path={`/${country.alpha3Code}`}>
+              <CountryDetail country={country}/>
+            </Route>
+          }
+        ):""}
+        <Route path="/">
       <div className='search__filter'>
         <div className="search">
-          <img src={searchicon} alt="searchicon"/>
+          <img src={darkmode? searchicon2 :searchicon} alt="searchicon"/>
           <input type="search" value={countryname} onChange={(e) => setCountryName(e.target.value)} placeholder="Search for a country..."/>
         </div>
         <div className="filters">
@@ -68,19 +96,22 @@ function App() {
         </div>
       </div>
       <div className="countries">
-            {countries? countries.map(country =>{
-            return <div className="country">
+            {countries.length>0? countries.map((country,index) =>{
+            return <Link to={`/${country.alpha3Code}`} ><div key={index} className="country">
                       <div className="country__flag" style={{backgroundImage:`url(${country.flag})`}}></div>
                       <div className="country__details">
                         <h1>{country.name}</h1>
-                        <p>Population: <span>{country.population}</span></p>
+                        <p>Population: <span>{numberWithCommas(country.population)}</span></p>
                         <p>Region: <span>{country.region}</span></p>
                         <p>Capital: <span>{country.capital}</span></p>
                       </div>
-                    </div>
-            }):""}
+                    </div></Link>
+            }):<div className="spinner"><ThreeDots fill="#66fcf1" trokeopacity=".125" /></div>}
       </div>
+        </Route>
+      </Switch>
     </div>
+    </Router>
   );
 }
 

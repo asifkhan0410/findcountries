@@ -1,0 +1,105 @@
+.countrypage{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 5%;
+    height: 83.2vh;
+}
+.countrypage> button{
+    border: none;
+    outline: none;
+    display: flex;
+    font-family: inherit;
+    padding: 5px 25px;
+    width: fit-content;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    align-items: center;
+    color: var(--primary-element-color);
+    background-color: var(--primary-element-background-color);
+    box-shadow: 0px 0px 4px var(--box-shadow);
+}
+.countrydetails{
+    display: flex;
+    justify-content: space-between;
+
+}
+.countrydetails>img{
+    width: 50%;
+    max-height: 500px;
+}
+.country__detail{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex:0.9;
+}
+.country__detail>h1{
+    color: var(--primary-element-color);
+}
+
+.country__info{
+    display: flex;
+    justify-content: space-between;
+    flex: 0.5;
+}
+.info__left>p, .info__right>p{
+    margin: 15px 0px;
+    letter-spacing: 0.5px;
+    color: var(--primary-element-color);
+    font-weight: 600;
+}
+.info__right>p>span, .info__left>p>span{
+    margin: 0px 5px;
+    font-weight: lighter;
+    color: var(--span-text);
+}
+.country__border>p{
+    color: var(--primary-element-color);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.country__border>p>a{
+    margin: 10px 0px;
+    text-decoration: none;
+}
+.country__border>p>a>span{
+    background-color: var(--primary-element-background-color);
+    color: var(--span-text);
+    box-shadow: 0px 0px 5px var(--box-shadow);
+    padding: 5px 30px;
+    border: none;
+    outline: none;
+    margin: 5px 10px;
+    border-radius: 3px;
+}
+
+@media only screen and (max-width:415px){
+    .countrypage{
+        height: auto;
+    }
+    .countrydetails{
+        flex-direction: column;
+    }
+    .countrydetails>img{
+        width: 100%;
+    }
+    .country__detail{
+        margin-top: 30px;
+    }
+    .country__detail>h1{
+        font-size: 25px;
+    }
+    .country__info{
+        flex-direction: column;
+    }
+    .info__left>p, .info__right>p{
+        font-size: 15px;
+    }
+    .country__border{
+        margin-bottom: 30px;
+    }
+    .country__border>p>a>span {
+        padding: 5px 20px;
+    }
+}
