@@ -25,7 +25,6 @@ function App() {
   useEffect(()=>{
     fetch(`https://restcountries.eu/rest/v2/all`).then(res => res.json()).then(data => {
       setCountries(data);
-      console.log(countries)
     })
   },[])
   
@@ -33,8 +32,6 @@ function App() {
     if(filters){
       fetch(`https://restcountries.eu/rest/v2/region/${filters}`).then(res => res.json()).then(data => {
       setCountries(data);
-      console.log(countries)
-
     })
     }
   },[filters])
@@ -48,8 +45,6 @@ function App() {
   else{
     fetch(`https://restcountries.eu/rest/v2/all`).then(res => res.json()).then(data => {
       setCountries(data);
-      console.log(countries)
-
     })
   }
   },[countryname])
