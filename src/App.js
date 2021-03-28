@@ -29,10 +29,15 @@ function App() {
   },[])
   
   useEffect(()=>{
-    if(filters){
+    if(filters!=='World'){
       fetch(`https://restcountries.eu/rest/v2/region/${filters}`).then(res => res.json()).then(data => {
       setCountries(data);
     })
+    }
+    else{
+      fetch(`https://restcountries.eu/rest/v2/all`).then(res => res.json()).then(data => {
+        setCountries(data);
+      })
     }
   },[filters])
 
@@ -72,7 +77,7 @@ function numberWithCommas(x) {
       <div className='search__filter'>
         <div className="search">
           <img src={darkmode? searchicon2 :searchicon} alt="searchicon"/>
-          <input type="search" value={countryname} onChange={(e) => setCountryName(e.target.value)} placeholder="Search for a country..."/>
+          <input type="search" aria-label="Search" value={countryname} onChange={(e) => setCountryName(e.target.value)} placeholder="Search for a country..."/>
         </div>
         <div className="filters">
           <div className="filters__holder" onClick={() => setToggleFilter(!togglefilter)}>
@@ -81,6 +86,7 @@ function numberWithCommas(x) {
           </div>
           {!togglefilter? 
            <div className="holder__options">
+             <option value="World" onClick={(e)=> {setFilters(e.target.value); setToggleFilter(!togglefilter)}}>World</option>
              <option value="Africa" onClick={(e)=> {setFilters(e.target.value); setToggleFilter(!togglefilter)}}>Africa</option>
              <option value="America" onClick={(e)=> {setFilters(e.target.value); setToggleFilter(!togglefilter)}}>America</option>
              <option value="Asia" onClick={(e)=> {setFilters(e.target.value); setToggleFilter(!togglefilter)}}>Asia</option>

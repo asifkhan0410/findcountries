@@ -75,7 +75,7 @@ header>h3{
 }
 .filters__holder{
   display: flex;
-  width:max-content;
+  width: auto;
   justify-content: space-between;
   align-items: center;
 }
@@ -161,7 +161,11 @@ header>h3{
   height: 15px;
   fill: var(--primary-element-color);
 }
-
+@media only screen and (max-width:1050px){
+  .countries>a{
+    width: 48%;
+  }
+}
 @media only screen and (max-width:415px){
   header{
     padding: 30px 5%;
