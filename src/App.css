@@ -1,6 +1,6 @@
 .light{
   --primary-element-background-color: white;
-  --primary-app-background-color: white;
+  --primary-app-background-color: hsl(0, 0%, 98%);
   --primary-element-color: hsl(200, 15%, 8%);
   --box-shadow: lightgray;
   --span-text : hsl(200, 15%, 8%);
