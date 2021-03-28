@@ -124,8 +124,9 @@ header>h3{
 }
 .country__flag{
   height: 180px;
-  background-size: contain;
-  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .country__details{
   display: flex;
