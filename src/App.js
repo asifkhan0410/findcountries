@@ -28,6 +28,7 @@ function App() {
     })
   },[])
   
+  //to find the countries using region.
   useEffect(()=>{
     if(filters!=='World'){
       fetch(`https://restcountries.eu/rest/v2/region/${filters}`).then(res => res.json()).then(data => {
@@ -41,6 +42,7 @@ function App() {
     }
   },[filters])
 
+  //to find the country using input field
   useEffect(()=>{
     if(countryname){
       fetch(`https://restcountries.eu/rest/v2/name/${countryname}`).then(res => res.json()).then(data => {
