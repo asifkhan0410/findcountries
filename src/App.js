@@ -56,6 +56,8 @@ function App() {
   }
   },[countryname])
 
+
+//to put the population with comma separated
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
